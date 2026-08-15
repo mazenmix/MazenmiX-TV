@@ -58,6 +58,12 @@ jobs:
         run: |
           set -euo pipefail
           python3 scripts/patch_mazenmix_tv.py StreamVault-src
+          python3 scripts/fix_identity.py StreamVault-src
+          grep -n 'applicationId = "com.streamvault.app"' StreamVault-src/app/build.gradle.kts
+          if grep -q 'applicationIdSuffix = ".debug"' StreamVault-src/app/build.gradle.kts; then
+            echo "ERROR: .debug package suffix still present"
+            exit 1
+          fi
 
       - name: Build APK
         shell: bash
