@@ -15,10 +15,6 @@ def replace_once(path: Path, old: str, new: str, label: str) -> None:
 
 
 # FAST XTREAM SYNC
-# The upstream 1.0.16 AUTO policy deliberately uses category-by-category for manual
-# Settings sync. On very large providers this means hundreds of requests. Prefer the
-# streamed full live catalog for manual/background sync while retaining the existing
-# low-memory, hidden-category and provider-stress safety gates.
 policy = root / "data/src/main/java/com/streamvault/data/sync/XtreamLiveSyncPolicy.kt"
 replace_once(
     policy,
@@ -27,15 +23,11 @@ replace_once(
     "manual/background live sync uses streamed full catalog",
 )
 
-# If a provider rejects/aborts the full-catalog route, keep the fallback bounded but
-# useful on Android TV instead of crawling one or two categories at a time.
 profile = root / "data/src/main/java/com/streamvault/data/sync/CatalogSyncRuntimeProfile.kt"
 replace_once(profile, "maxCategoryConcurrency = 1,", "maxCategoryConcurrency = if (snapshot.isTelevision) 4 else 1,", "low-tier TV fallback concurrency")
 replace_once(profile, "maxCategoryConcurrency = 2,", "maxCategoryConcurrency = if (snapshot.isTelevision) 8 else 2,", "mid-tier TV fallback concurrency")
 replace_once(profile, "maxCategoryConcurrency = Int.MAX_VALUE,", "maxCategoryConcurrency = if (snapshot.isTelevision) 12 else 16,", "high-tier bounded fallback concurrency")
 
-# Stop the visible 'Retrying EPG...' stage from being able to sit there for tens of
-# minutes. The initial EPG attempt remains intact; only the retry gets a 90-second cap.
 sync_manager = root / "data/src/main/java/com/streamvault/data/sync/SyncManager.kt"
 text = sync_manager.read_text(encoding="utf-8")
 if "import kotlinx.coroutines.withTimeoutOrNull\n" not in text:
@@ -51,7 +43,6 @@ text = text.replace(
 sync_manager.write_text(text, encoding="utf-8")
 print("patched: visible EPG retry hard cap")
 
-# Background EPG work should not keep exponential-retrying forever either.
 epg_worker = root / "data/src/main/java/com/streamvault/data/sync/BackgroundEpgSyncWorker.kt"
 replace_once(
     epg_worker,
@@ -65,18 +56,8 @@ replace_once(
     """                    } else if (shouldRetry(result.exception)) {\n                        if (runAttemptCount >= 1) Result.success() else Result.retry()\n""",
     "cap transient EPG retry loop",
 )
-replace_once(
-    epg_worker,
-    "com.streamvault.domain.model.Result.Loading -> Result.retry()",
-    "com.streamvault.domain.model.Result.Loading -> if (runAttemptCount >= 1) Result.success() else Result.retry()",
-    "cap loading EPG retry loop",
-)
-replace_once(
-    epg_worker,
-    "if (shouldRetry(e)) Result.retry() else Result.failure()",
-    "if (shouldRetry(e)) { if (runAttemptCount >= 1) Result.success() else Result.retry() } else Result.failure()",
-    "cap exceptional EPG retry loop",
-)
+replace_once(epg_worker, "com.streamvault.domain.model.Result.Loading -> Result.retry()", "com.streamvault.domain.model.Result.Loading -> if (runAttemptCount >= 1) Result.success() else Result.retry()", "cap loading EPG retry loop")
+replace_once(epg_worker, "if (shouldRetry(e)) Result.retry() else Result.failure()", "if (shouldRetry(e)) { if (runAttemptCount >= 1) Result.success() else Result.retry() } else Result.failure()", "cap exceptional EPG retry loop")
 
 # ROOMIER LIVE-TV UI
 home = root / "app/src/main/java/com/streamvault/app/ui/screens/home/HomeScreen.kt"
@@ -105,18 +86,17 @@ replace_once(cards, "val contentSpacing = if (isUltraCompact) 8.dp else 10.dp", 
 replace_once(cards, "style = if (isDense) MaterialTheme.typography.bodyLarge else MaterialTheme.typography.titleSmall,", "style = if (isDense) MaterialTheme.typography.titleSmall else MaterialTheme.typography.titleMedium,", "larger channel titles")
 replace_once(cards, "style = if (isDense) MaterialTheme.typography.labelMedium else MaterialTheme.typography.bodySmall,", "style = if (isDense) MaterialTheme.typography.bodySmall else MaterialTheme.typography.bodyMedium,", "larger EPG text")
 
-# Preserve the MazenmiX build identity. The current APK is based on upstream 1.0.16;
-# keep the visible TV brand as MX TV while replacing upstream user-facing StreamVault
-# references with the existing MazenmiXTream product name.
+# MAZENMIX TV BRANDING — force the launcher/app label in every resource set.
 for strings in (root / "app/src/main/res").glob("values*/strings.xml"):
     data = strings.read_text(encoding="utf-8")
-    data = data.replace("StreamVault", "MazenmiXTream").replace("Stream Vault", "MazenmiXTream")
+    data = data.replace("StreamVault", "MazenmiX TV").replace("Stream Vault", "MazenmiX TV")
+    data = re.sub(r'<string name="app_name">.*?</string>', '<string name="app_name">MazenmiX TV</string>', data)
     strings.write_text(data, encoding="utf-8")
 
 debug_strings = root / "app/src/debug/res/values/strings.xml"
 if debug_strings.exists():
     data = debug_strings.read_text(encoding="utf-8")
-    data = re.sub(r'<string name="app_name">.*?</string>', '<string name="app_name">MX TV</string>', data)
+    data = re.sub(r'<string name="app_name">.*?</string>', '<string name="app_name">MazenmiX TV</string>', data)
     debug_strings.write_text(data, encoding="utf-8")
 
 print("MazenmiX TV patch complete")
