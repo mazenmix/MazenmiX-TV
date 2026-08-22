@@ -86,6 +86,300 @@ replace_once(cards, "val contentSpacing = if (isUltraCompact) 8.dp else 10.dp", 
 replace_once(cards, "style = if (isDense) MaterialTheme.typography.bodyLarge else MaterialTheme.typography.titleSmall,", "style = if (isDense) MaterialTheme.typography.titleSmall else MaterialTheme.typography.titleMedium,", "larger channel titles")
 replace_once(cards, "style = if (isDense) MaterialTheme.typography.labelMedium else MaterialTheme.typography.bodySmall,", "style = if (isDense) MaterialTheme.typography.bodySmall else MaterialTheme.typography.bodyMedium,", "larger EPG text")
 
+
+# PHONE-SAFE SETTINGS + UNLIMITED SERVER ENTRY
+# The upstream TV-first settings surface can crash on some phones. Keep the
+# full TV screen unchanged and route phones to a compact touch-first provider
+# manager that always exposes ADD MORE SERVER.
+app_navigation = root / "app/src/main/java/com/streamvault/app/navigation/AppNavigation.kt"
+replace_once(
+    app_navigation,
+    """            SettingsScreen(
+                onNavigate = { route -> tabNavigate(route) },
+                onAddProvider = dropUnlessResumed {
+                    navController.navigate(Routes.providerSetup(null))
+                },
+                onEditProvider = { provider ->
+                    navController.navigateIfResumed(Routes.providerSetup(provider.id))
+                },
+                onNavigateToParentalControl = { providerId ->
+                    navController.navigateIfResumed(Routes.parentalControlGroups(providerId))
+                },
+                currentRoute = Routes.SETTINGS,
+                initialBackupImportUri = backupUri
+            )
+""",
+    """            if (com.streamvault.app.device.rememberIsTelevisionDevice()) {
+                SettingsScreen(
+                    onNavigate = { route -> tabNavigate(route) },
+                    onAddProvider = dropUnlessResumed {
+                        navController.navigate(Routes.providerSetup(null))
+                    },
+                    onEditProvider = { provider ->
+                        navController.navigateIfResumed(Routes.providerSetup(provider.id))
+                    },
+                    onNavigateToParentalControl = { providerId ->
+                        navController.navigateIfResumed(Routes.parentalControlGroups(providerId))
+                    },
+                    currentRoute = Routes.SETTINGS,
+                    initialBackupImportUri = backupUri
+                )
+            } else {
+                com.streamvault.app.ui.screens.settings.MazenmiXPhoneSettingsScreen(
+                    onNavigate = { route -> tabNavigate(route) },
+                    onAddProvider = dropUnlessResumed {
+                        navController.navigate(Routes.providerSetup(null))
+                    },
+                    onEditProvider = { provider ->
+                        navController.navigateIfResumed(Routes.providerSetup(provider.id))
+                    }
+                )
+            }
+""",
+    "phone settings uses touch-safe unlimited server manager",
+)
+
+phone_settings = root / "app/src/main/java/com/streamvault/app/ui/screens/settings/MazenmiXPhoneSettingsScreen.kt"
+phone_settings.write_text(
+    """package com.streamvault.app.ui.screens.settings
+
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.weight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.streamvault.domain.model.Provider
+
+private val PhoneBackground = Color(0xFF07090D)
+private val PhoneSurface = Color(0xFF141821)
+private val PhoneAccent = Color(0xFF7C5CFC)
+private val PhoneText = Color(0xFFF5F7FB)
+private val PhoneMuted = Color(0xFFAAB1C0)
+private val PhoneActive = Color(0xFF38D996)
+
+@Composable
+fun MazenmiXPhoneSettingsScreen(
+    onNavigate: (String) -> Unit,
+    onAddProvider: () -> Unit,
+    onEditProvider: (Provider) -> Unit,
+    viewModel: SettingsViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    BackHandler { onNavigate("home") }
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = PhoneBackground
+    ) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 18.dp, vertical = 14.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Settings",
+                        color = PhoneText,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "Servers and playlists",
+                        color = PhoneMuted,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+                TextButton(onClick = { onNavigate("home") }) {
+                    Text("DONE", color = PhoneText)
+                }
+            }
+
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 28.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                item(key = "add-server-top") {
+                    AddMoreServerButton(onAddProvider)
+                }
+
+                item(key = "server-heading") {
+                    Column(modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)) {
+                        Text(
+                            text = "MY SERVERS (\${uiState.providers.size})",
+                            color = PhoneText,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "Add as many Xtream, M3U or portal servers as you want.",
+                            color = PhoneMuted,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                }
+
+                if (uiState.providers.isEmpty()) {
+                    item(key = "empty-servers") {
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = PhoneSurface),
+                            shape = RoundedCornerShape(16.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Column(modifier = Modifier.padding(18.dp)) {
+                                Text(
+                                    text = "No server added",
+                                    color = PhoneText,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                                Spacer(Modifier.height(6.dp))
+                                Text(
+                                    text = "Press ADD MORE SERVER to connect your first source.",
+                                    color = PhoneMuted,
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+                    }
+                } else {
+                    items(
+                        items = uiState.providers,
+                        key = { provider -> provider.id }
+                    ) { provider ->
+                        PhoneProviderCard(
+                            provider = provider,
+                            onEdit = { onEditProvider(provider) }
+                        )
+                    }
+
+                    item(key = "add-server-bottom") {
+                        Spacer(Modifier.height(4.dp))
+                        AddMoreServerButton(onAddProvider)
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun AddMoreServerButton(onClick: () -> Unit) {
+    Button(
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(56.dp),
+        shape = RoundedCornerShape(16.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = PhoneAccent,
+            contentColor = Color.White
+        )
+    ) {
+        Text(
+            text = "＋  ADD MORE SERVER",
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+@Composable
+private fun PhoneProviderCard(
+    provider: Provider,
+    onEdit: () -> Unit
+) {
+    Card(
+        colors = CardDefaults.cardColors(containerColor = PhoneSurface),
+        shape = RoundedCornerShape(16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onEdit)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = provider.name,
+                    color = PhoneText,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    text = provider.type.name.replace('_', ' '),
+                    color = PhoneAccent,
+                    style = MaterialTheme.typography.labelMedium,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = provider.serverUrl.ifBlank { "Server details saved" },
+                    color = PhoneMuted,
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            Column(horizontalAlignment = Alignment.End) {
+                Text(
+                    text = if (provider.isActive) "ACTIVE" else "SAVED",
+                    color = if (provider.isActive) PhoneActive else PhoneMuted,
+                    style = MaterialTheme.typography.labelMedium,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = "EDIT",
+                    color = PhoneText,
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+    }
+}
+""",
+    encoding="utf-8",
+)
+print("patched: phone-safe settings with unlimited ADD MORE SERVER actions")
+
+
 # MAZENMIX TV BRANDING — force the launcher/app label in every resource set.
 for strings in (root / "app/src/main/res").glob("values*/strings.xml"):
     data = strings.read_text(encoding="utf-8")
