@@ -348,7 +348,7 @@ private fun PhoneProviderCard(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = provider.serverUrl.ifBlank { "Server details saved" },
+                    text = provider.status.name.replace('_', ' '),
                     color = PhoneMuted,
                     style = MaterialTheme.typography.bodySmall,
                     maxLines = 1,
