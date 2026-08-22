@@ -56,22 +56,28 @@ jobs:
       - name: Apply MazenmiX TV patch
         shell: bash
         run: |
-          set -euo pipefail
-          python3 scripts/patch_mazenmix_tv.py StreamVault-src
-          python3 scripts/fix_identity.py StreamVault-src
-          grep -n 'applicationId = "com.streamvault.app"' StreamVault-src/app/build.gradle.kts
-          if grep -q 'applicationIdSuffix = ".debug"' StreamVault-src/app/build.gradle.kts; then
-            echo "ERROR: .debug package suffix still present"
-            exit 1
-          fi
+          set -o pipefail
+          (
+            set -euo pipefail
+            python3 scripts/patch_mazenmix_tv.py StreamVault-src
+            python3 scripts/fix_identity.py StreamVault-src
+            grep -n 'applicationId = "com.streamvault.app"' StreamVault-src/app/build.gradle.kts
+            if grep -q 'applicationIdSuffix = ".debug"' StreamVault-src/app/build.gradle.kts; then
+              echo "ERROR: .debug package suffix still present"
+              exit 1
+            fi
+          ) 2>&1 | tee patch.log
 
       - name: Build APK
         shell: bash
         run: |
-          set -euo pipefail
-          cd StreamVault-src
-          chmod +x gradlew
-          ./gradlew --console=plain :app:assembleDebug
+          set -o pipefail
+          (
+            set -euo pipefail
+            cd StreamVault-src
+            chmod +x gradlew
+            ./gradlew --console=plain :app:assembleDebug
+          ) 2>&1 | tee build.log
 
       - name: Package APK
         shell: bash
@@ -103,3 +109,26 @@ jobs:
             MazenmiX-TV-FastSync-Roomy.apk
             MazenmiX-TV-FastSync-Roomy.apk.sha256
           if-no-files-found: error
+
+      - name: Publish build diagnostics
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "workflow_commit=${{ github.sha }}"
+            echo "job_status=${{ job.status }}"
+            echo
+            echo "===== PATCH LOG ====="
+            if [ -f patch.log ]; then tail -n 500 patch.log; else echo "patch.log unavailable"; fi
+            echo
+            echo "===== BUILD LOG ====="
+            if [ -f build.log ]; then tail -n 1000 build.log; else echo "build.log unavailable"; fi
+          } > build-diagnostics.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
+          git add build-diagnostics.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Record Android build diagnostics [skip ci]"
+            git push origin HEAD:main
+          fi
