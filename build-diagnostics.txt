@@ -1,0 +1,311 @@
+workflow_commit=6329e8663133f82b6717ddf905ce8e14328df9ee
+job_status=failure
+
+===== PATCH LOG =====
+patched: manual/background live sync uses streamed full catalog
+patched: low-tier TV fallback concurrency
+patched: mid-tier TV fallback concurrency
+patched: high-tier bounded fallback concurrency
+patched: visible EPG retry hard cap
+patched: cap partial EPG retry loop
+patched: cap transient EPG retry loop
+patched: cap loading EPG retry loop
+patched: cap exceptional EPG retry loop
+patched: wider TV category sidebar
+patched: wider channel list column
+patched: larger channel rows and breathing room
+patched: more category row separation
+patched: larger category focus rows
+patched: larger category labels
+patched: roomier live row vertical padding
+patched: roomier live row horizontal padding
+patched: larger channel logos
+patched: more live row spacing
+patched: larger channel titles
+patched: larger EPG text
+patched: phone settings uses touch-safe unlimited server manager
+patched: phone-safe settings with unlimited ADD MORE SERVER actions
+MazenmiX TV patch complete
+identity fixed: package com.streamvault.app, launcher label MX TV
+57:        applicationId = "com.streamvault.app"
+
+===== BUILD LOG =====
+Starting a Gradle Daemon (subsequent builds will be faster)
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :domain:processResources NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateDebugBuildConfig
+> Task :data:preBuild UP-TO-DATE
+> Task :data:preDebugBuild UP-TO-DATE
+> Task :data:writeDebugAarMetadata
+> Task :player:verifyLocalFfmpegArtifact
+> Task :player:preBuild
+> Task :player:preDebugBuild
+> Task :player:writeDebugAarMetadata
+> Task :app:generateDebugResValues
+> Task :data:generateDebugResValues
+> Task :data:generateDebugResources
+> Task :app:checkDebugAarMetadata
+> Task :data:packageDebugResources
+> Task :player:generateDebugResValues
+> Task :player:generateDebugResources
+> Task :player:packageDebugResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:mergeDebugResources
+> Task :app:packageDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :data:extractDeepLinksDebug
+> Task :player:extractDeepLinksDebug
+> Task :player:processDebugManifest
+> Task :data:processDebugManifest
+> Task :app:parseDebugLocalResources
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :data:compileDebugLibraryResources
+> Task :app:processDebugManifestForPackage
+> Task :player:compileDebugLibraryResources
+> Task :data:parseDebugLocalResources
+> Task :data:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :player:parseDebugLocalResources
+> Task :data:generateDebugRFile
+> Task :player:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:javaPreCompileDebug
+> Task :player:generateDebugRFile
+> Task :player:javaPreCompileDebug
+> Task :app:javaPreCompileDebug
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :data:mergeDebugShaders
+> Task :data:compileDebugShaders NO-SOURCE
+> Task :data:generateDebugAssets UP-TO-DATE
+> Task :data:mergeDebugAssets
+> Task :player:mergeDebugShaders
+> Task :player:compileDebugShaders NO-SOURCE
+> Task :player:generateDebugAssets UP-TO-DATE
+> Task :player:mergeDebugAssets
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :app:processDebugResources
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugJniLibFolders
+> Task :app:desugarDebugFileDependencies
+> Task :data:mergeDebugJniLibFolders
+> Task :data:mergeDebugNativeLibs NO-SOURCE
+> Task :data:copyDebugJniLibsProjectOnly
+> Task :player:mergeDebugJniLibFolders
+> Task :player:mergeDebugNativeLibs NO-SOURCE
+> Task :domain:compileKotlin
+> Task :app:l8DexDesugarLibDebug
+> Task :player:copyDebugJniLibsProjectOnly
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+
+> Task :domain:compileKotlin
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/domain/src/main/java/com/streamvault/domain/usecase/GetCustomCategories.kt:38:18 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+
+> Task :domain:compileJava NO-SOURCE
+> Task :domain:classes UP-TO-DATE
+> Task :domain:jar
+> Task :app:mergeExtDexDebug
+> Task :app:mergeDebugNativeLibs
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libdatastore_shared_counter.so, libffmpegJNI.so. Run with --info option to learn more.
+
+> Task :player:kspDebugKotlin
+> Task :data:kspDebugKotlin
+
+> Task :player:compileDebugKotlin
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/player/src/main/java/com/streamvault/player/Media3PlayerEngine.kt:766:63 'class SingleSampleMediaSource : BaseMediaSource' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/player/src/main/java/com/streamvault/player/Media3PlayerEngine.kt:1306:34 'constructor(p0: Context, p1: MediaCodecSelector, p2: Long, p3: Boolean, p4: Handler?, p5: VideoRendererEventListener?, p6: Int): MediaCodecVideoRenderer' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/player/src/main/java/com/streamvault/player/playback/FfmpegExtensionSupport.kt:44:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to property.
+- To opt in to applying to both value parameter and property, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/player/src/main/java/com/streamvault/player/timeshift/LiveTimeshiftManager.kt:91:42 'static field TRIM_MEMORY_RUNNING_CRITICAL: Int' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/player/src/main/java/com/streamvault/player/timeshift/LiveTimeshiftManager.kt:108:18 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/player/src/main/java/com/streamvault/player/tracks/PlayerTrackController.kt:54:14 'fun setViewportSizeToPhysicalDisplaySize(p0: Context, p1: Boolean): TrackSelectionParameters.Builder' is deprecated. Deprecated in Java.
+
+> Task :player:compileDebugJavaWithJavac
+> Task :player:processDebugJavaRes
+> Task :player:transformDebugClassesWithAsm
+> Task :player:bundleLibRuntimeToJarDebug
+> Task :player:bundleLibCompileToJarDebug
+> Task :player:bundleLibRuntimeToDirDebug
+> Task :data:compileDebugKotlin
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:121:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:130:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:143:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:198:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:221:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:227:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:235:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:250:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:573:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:666:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:937:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:984:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1007:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1021:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1033:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1042:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1050:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1062:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1068:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1189:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1201:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1207:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1213:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1236:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1254:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1260:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1266:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1374:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1412:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1418:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1503:33 Type argument for reified type parameter 'T' was inferred to the intersection of ['Comparable<*>?' & 'Serializable?']. Reification of an intersection type results in the common supertype being used. This may lead to subtle issues and an explicit type argument is encouraged. This will become an error in a future release.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1576:29 Type argument for reified type parameter 'T' was inferred to the intersection of ['Comparable<*>?' & 'Serializable?']. Reification of an intersection type results in the common supertype being used. This may lead to subtle issues and an explicit type argument is encouraged. This will become an error in a future release.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1600:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1625:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1640:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1670:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1710:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1805:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1843:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1850:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1875:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1893:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1903:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1946:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1959:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:1998:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2105:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2201:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2221:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2526:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2533:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2565:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2577:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2584:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2608:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2626:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2661:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2668:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2676:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2688:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2706:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2715:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/local/StreamVaultDatabase.kt:2725:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/BackupManagerImpl.kt:62:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:7:8 'class GoogleSignIn : Any' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:8:8 'class GoogleSignInAccount : AbstractSafeParcelable, ReflectedParcelable' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:9:8 'class GoogleSignInClient : GoogleApi<GoogleSignInOptions!>' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:10:8 'class GoogleSignInOptions : AbstractSafeParcelable, Api.ApiOptions.Optional, ReflectedParcelable' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:64:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:82:22 'class GoogleSignIn : Any' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:105:31 'class GoogleSignIn : Any' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:333:32 'class GoogleSignInClient : GoogleApi<GoogleSignInOptions!>' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:334:23 'class GoogleSignInOptions : AbstractSafeParcelable, Api.ApiOptions.Optional, ReflectedParcelable' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:334:51 'class GoogleSignInOptions : AbstractSafeParcelable, Api.ApiOptions.Optional, ReflectedParcelable' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:338:16 'class GoogleSignIn : Any' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:341:42 'class GoogleSignInAccount : AbstractSafeParcelable, ReflectedParcelable' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:342:9 'class GoogleSignIn : Any' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:344:43 'class GoogleSignInAccount : AbstractSafeParcelable, ReflectedParcelable' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:345:22 'class GoogleSignIn : Any' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:354:43 'class GoogleSignInAccount : AbstractSafeParcelable, ReflectedParcelable' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/GoogleDriveBackupSyncManager.kt:422:17 'class GoogleSignInAccount : AbstractSafeParcelable, ReflectedParcelable' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/RecordingManagerImpl.kt:77:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/recording/RecordingAlarmScheduler.kt:16:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/reminder/ProgramReminderAlarmScheduler.kt:17:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/manager/reminder/ProgramReminderNotifier.kt:17:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/preferences/PreferencesRepository.kt:91:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/remote/dto/LenientJsonSerializers.kt:233:9 'when' is exhaustive so 'else' is redundant here.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/remote/stalker/OkHttpStalkerApiService.kt:1090:20 'var isLenient: Boolean' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/remote/stalker/OkHttpStalkerApiService.kt:1236:20 'var isLenient: Boolean' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/remote/stalker/OkHttpStalkerApiService.kt:1699:13 'when' is exhaustive so 'else' is redundant here.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/remote/xtream/OkHttpXtreamApiService.kt:489:20 'var isLenient: Boolean' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/repository/ChannelRepositoryImpl.kt:343:38 Unchecked cast of 'Any' to 'Set<Long>'.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/repository/ChannelRepositoryImpl.kt:345:35 Unchecked cast of 'Any' to 'Set<Long>'.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/repository/CombinedM3uRepositoryImpl.kt:43:29 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/repository/CombinedM3uRepositoryImpl.kt:253:45 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/repository/CombinedM3uRepositoryImpl.kt:271:60 Unchecked cast of 'Any?' to 'List<Category>'.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/repository/CombinedM3uRepositoryImpl.kt:272:66 Unchecked cast of 'Any?' to 'Set<Long>'.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/repository/CombinedM3uRepositoryImpl.kt:330:45 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/repository/EpgSourceRepositoryImpl.kt:59:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/sync/CatalogSyncRuntimeProfile.kt:116:56 'static field FEATURE_TELEVISION: String' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/sync/SyncManager.kt:2884:21 Projection is redundant: the corresponding type parameter of 'List<out Any>' has the same variance.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/sync/SyncManager.kt:2902:21 Projection is redundant: the corresponding type parameter of 'List<out Any>' has the same variance.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/sync/SyncManager.kt:2904:13 Projection is redundant: the corresponding type parameter of 'List<out Any>' has the same variance.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/sync/SyncManager.kt:2911:21 Projection is redundant: the corresponding type parameter of 'List<out Any>' has the same variance.
+w: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/data/src/main/java/com/streamvault/data/sync/SyncManager.kt:2914:13 Projection is redundant: the corresponding type parameter of 'List<out Any>' has the same variance.
+
+> Task :data:compileDebugJavaWithJavac
+> Task :data:copyRoomSchemas NO-SOURCE
+> Task :data:processDebugJavaRes
+> Task :data:transformDebugClassesWithAsm
+> Task :data:bundleLibCompileToJarDebug
+> Task :data:bundleLibRuntimeToJarDebug
+> Task :data:bundleLibRuntimeToDirDebug
+> Task :app:kspDebugKotlin
+> Task :app:mergeLibDexDebug
+> Task :app:compileDebugKotlin
+e: file:///home/runner/work/MazenmiX-TV/MazenmiX-TV/StreamVault-src/app/src/main/java/com/streamvault/app/ui/screens/settings/MazenmiXPhoneSettingsScreen.kt:14:43 Cannot access 'val RowColumnParentData?.weight: Float': it is internal in file.
+
+> Task :app:compileDebugKotlin FAILED
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_3-1787389483054.json
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 3m 59s
+78 actionable tasks: 78 executed
