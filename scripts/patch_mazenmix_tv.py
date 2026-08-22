@@ -236,7 +236,7 @@ fun MazenmiXPhoneSettingsScreen(
                 item(key = "server-heading") {
                     Column(modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)) {
                         Text(
-                            text = "MY SERVERS (\${uiState.providers.size})",
+                            text = "MY SERVERS (${uiState.providers.size})",
                             color = PhoneText,
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
