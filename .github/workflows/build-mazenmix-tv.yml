@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: mazenmix-tv-fast-${{ github.ref }}
@@ -81,6 +81,19 @@ jobs:
           test -n "$APK"
           cp "$APK" "MazenmiX-TV-FastSync-Roomy.apk"
           sha256sum "MazenmiX-TV-FastSync-Roomy.apk" > "MazenmiX-TV-FastSync-Roomy.apk.sha256"
+
+      - name: Publish latest APK to repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp "MazenmiX-TV-FastSync-Roomy.apk" "MazenmiX TV.apk"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "MazenmiX TV.apk"
+          if ! git diff --cached --quiet; then
+            git commit -m "Build phone settings and unlimited servers APK [skip ci]"
+            git push origin HEAD:main
+          fi
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
